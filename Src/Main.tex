@@ -1,6 +1,11 @@
 \documentclass[a4paper,12pt]{book}
 
+\usepackage[utf8]{inputenc}
+\usepackage[serbian]{babel}
 \usepackage{tikz}
+\usepackage{amsmath, amssymb, amsthm}
+
+\newtheorem{zad}{Zadatak}
 
 \renewcommand{\figurename}{Slika}
 \newcommand{\Placeholder}[2][(10, 10)]
@@ -12,6 +17,14 @@
     \end{tikzpicture}
 }
 
+\renewcommand{\contentsname}{Sadržaj}
+\title{Želim da se samostalno matematički obrazujem}
+\author{Živorad Jovanović}
+\date{26. Mart 2023.}
+
 \begin{document} 
-  \input{Pages}
+    \maketitle
+    \input{Preface}
+    \tableofcontents
+    \input{Pages}
 \end{document}   
