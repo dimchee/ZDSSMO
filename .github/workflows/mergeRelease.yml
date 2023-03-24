@@ -1,0 +1,45 @@
+name: Create Pages.tex, Build LaTeX, Upload Book
+on:
+  push:
+    branches: main
+    paths: Src/**
+jobs:
+  create-commit-build-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        name: Tectonic Cache
+        with:
+          path: ~/.cache/Tectonic
+          key: ${{ runner.os }}-tectonic-${{ hashFiles('**/*.tex') }}
+          restore-keys: |
+            ${{ runner.os }}-tectonic-
+      - uses: wtfjoke/setup-tectonic@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update Pages.tex
+        run: .github/scripts/updatePagesTeX.sh
+      - name: Commit Change
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: 'Src/Pages.tex'
+          message: 'Update Src/Pages.tex'
+      - name: Run Tectonic
+        run: tectonic Src/Main.tex
+      - name: Rename PDF
+        run: mv Src/Main.pdf Book.pdf
+      - name: Upload pdf
+        uses: actions/upload-artifact@v3
+        with:
+          name: Book
+          path: Book.pdf
+      - name: Release Book
+        uses: marvinpinto/action-automatic-releases@6273874b61ebc8c71f1a61b2d98e234cf389b303
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: false
+          title: "Current version of Book "
+          files: Book.pdf

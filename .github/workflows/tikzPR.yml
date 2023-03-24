@@ -1,0 +1,59 @@
+name: Detect Tikz, Create PR
+on:
+  issue_comment:
+    types:
+      - created
+      - edited
+jobs:
+  detect-tikz:
+    runs-on: ubuntu-latest
+    if: startsWith( github.event.comment.body, '\documentclass' ) 
+      && contains(github.event.issue.labels.*.name, 'Tikz')
+    env:
+      FILE: ${{ format( 'Src/Slike/{0}.tex', github.event.issue.title ) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Add LaTeX
+        run: |
+          mkdir -p Src/Slike
+          cat > $FILE << EOF
+          ${{ github.event.comment.body }}
+          EOF
+      - name: Tectonic Cache
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/Tectonic
+          key: ${{ runner.os }}-tectonic-${{ hashFiles('**/*.tex') }}
+          restore-keys: |
+            ${{ runner.os }}-tectonic-
+      - name: Setup tectonic
+        uses: wtfjoke/setup-tectonic@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check If Page compiles (Tectonic)
+        run: |
+          echo 'CompileOutput<<EOF' >> $GITHUB_ENV
+          tectonic $FILE 2>&1 | cat >> $GITHUB_ENV
+          STATUS=${PIPESTATUS[0]}
+          echo 'EOF' >> $GITHUB_ENV
+          exit $STATUS
+      - name: If Check failed, Comment error
+        if: ${{ failure() }}
+        uses: ben-z/actions-comment-on-issue@1.0.2
+        with:
+          message: "# There was an error in submited code\n ${{ env.CompileOutput }}"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: If Check succeed, Comment success
+        uses: ben-z/actions-comment-on-issue@1.0.2
+        with:
+          message: "# Slika successfully compiled 🎉"
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update Raw Page 
+        run: .github/scripts/updateRawPage.sh $FILE
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v4
+        with:
+          branch: ${{ format( 'tikz-fix/{0}', github.event.issue.title) }} 
+          title: ${{ format( 'Add Tikz for {0}', github.event.issue.title) }}
+          body: ${{ format( 'Tikz change, Issue \#{0}', github.event.issue.number) }}
