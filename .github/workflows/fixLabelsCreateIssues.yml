@@ -15,5 +15,5 @@ jobs:
         run: |
           for PART in $(ls Parts)
           do
-            .github/scripts/createTexIssue.sh ${PART%.*}
+            .github/scripts/createTeXIssue.sh ${PART%.*}
           done
