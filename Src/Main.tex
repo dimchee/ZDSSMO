@@ -2,13 +2,21 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[serbian]{babel}
-\usepackage{tikz}
+\usepackage{tikz, xcolors}
 \usepackage{amsmath, amssymb, amsthm}
 
 \newtheorem{zad}{Zadatak}
 
 \renewcommand{\figurename}{Slika}
 \newcommand{\Placeholder}[2][(10, 10)]
+{
+    \begin{tikzpicture}
+        \draw[help lines] (0, 0) grid #1;
+        \pgfgetlastxy{\x}{\y}
+        \node[rotate=-25, align=center] at (\x / 2, \y / 2) {{\Huge Placeholder} \\  #2};
+    \end{tikzpicture}
+}
+\newcommand{\placeholder}[2][(10, 10)]
 {
     \begin{tikzpicture}
         \draw[help lines] (0, 0) grid #1;
