@@ -15,11 +15,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Add LaTeX
+        env:
+          BODY: ${{ github.event.comment.body }}
         run: |
           mkdir -p Src/Pages
-          cat > $FILE << EOF
-          ${{ github.event.comment.body }}
-          EOF
+          echo "$BODY" > $FILE
       - name: Tectonic Cache
         uses: actions/cache@v3
         with:
