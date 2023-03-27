@@ -11,6 +11,7 @@ jobs:
       && contains(github.event.issue.labels.*.name, 'LaTeX')
     env:
       FILE: ${{ format( 'Src/Pages/{0}.tex', github.event.issue.title ) }}
+      TEST_FILE: ${{ format( 'PartsCompiled/{0}.tex', github.event.issue.title ) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -19,7 +20,9 @@ jobs:
           BODY: ${{ github.event.comment.body }}
         run: |
           mkdir -p Src/Pages
+          mkdir -p PartsCompiled
           echo "$BODY" > $FILE
+          echo "$BODY" > $TEST_FILE
       - name: Tectonic Cache
         uses: actions/cache@v3
         with:
@@ -36,13 +39,15 @@ jobs:
         with:
           python-version: '3.10' 
       - name: Make Raw Page 
-        run: .github/scripts/updateRawPage.sh $FILE
+        run: |
+          .github/scripts/updateRawPage.sh $FILE
+          .github/scripts/updateRawPage.sh $TEST_FILE
       - name: Embed Page in Main
         run: python .github/scripts/embedInMain.py $FILE
       - name: Check If Page compiles (Tectonic)
         run: |
           echo 'CompileOutput<<EOF' >> $GITHUB_ENV
-          tectonic $FILE 2>&1 | cat >> $GITHUB_ENV
+          tectonic $TEST_FILE 2>&1 | cat >> $GITHUB_ENV
           STATUS=${PIPESTATUS[0]}
           echo 'EOF' >> $GITHUB_ENV
           exit $STATUS
@@ -57,8 +62,6 @@ jobs:
         with:
           message: "# Document successfully compiled 🎉"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Make Raw Page 
-        run: .github/scripts/updateRawPage.sh $FILE
       - name: Find Placeholders, Update content, Create files & Issues
         run: python .github/scripts/fixPlaceholders.py ${{ github.event.issue.title }} $FILE
         env:
