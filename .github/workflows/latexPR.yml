@@ -43,7 +43,7 @@ jobs:
           .github/scripts/updateRawPage.sh $FILE
           .github/scripts/updateRawPage.sh $TEST_FILE
       - name: Embed Page in Main
-        run: python .github/scripts/embedInMain.py $FILE
+        run: python .github/scripts/embedInMain.py $TEST_FILE
       - name: Check If Page compiles (Tectonic)
         run: |
           echo 'CompileOutput<<EOF' >> $GITHUB_ENV
