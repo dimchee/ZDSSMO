@@ -1,0 +1,253 @@
+\documentclass[a4paper,12pt]{book}
+
+\usepackage[utf8]{inputenc}
+\usepackage[serbian]{babel}
+\usepackage{tikz, xcolor, float}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{caption, subcaption, multicol}
+
+\newtheorem{zad}{Zadatak}
+
+\renewcommand{\figurename}{Slika}
+\newcommand{\Placeholder}[2][(10, 10)]
+{
+    \begin{tikzpicture}
+        \draw[help lines] (0, 0) grid #1;
+        \pgfgetlastxy{\x}{\y}
+        \node[rotate=-25, align=center] at (\x / 2, \y / 2) {{\Huge Placeholder} \\  #2};
+    \end{tikzpicture}
+}
+\newcommand{\placeholder}[2][(10, 10)]
+{
+    \begin{tikzpicture}
+        \draw[help lines] (0, 0) grid #1;
+        \pgfgetlastxy{\x}{\y}
+        \node[rotate=-25, align=center] at (\x / 2, \y / 2) {{\Huge Placeholder} \\  #2};
+    \end{tikzpicture}
+}
+
+\renewcommand{\contentsname}{Sadržaj}
+\title{Želim da se samostalno matematički obrazujem}
+\author{Živorad Jovanović}
+\date{26. Mart 2023.}
+
+\begin{document} 
+    \section{Mentalno zdravlje}
+    \begin{zad}
+        \begin{enumerate}
+            \item U kombiju ima 8 sedi\v sta. Na koliko na\v cina mogu da sednu:
+            2 putnika; 3 putnika; 4 putnika?
+            
+            Razmi\v slja\v s: Ako je jedan putnik on mo\v ze da sedne na svako od 8 sedi\v sta.
+            Zna\v ci ima 8 mogu\' cnosti.
+
+            Zato je dobro da ra\v cuna\v s: $2$ puta po $8$, tj. $8 + 8$ jer svaki putnik
+            mo\v ze da sedne na svako sedi\v ste, $8$ puta po $2$, tj. $2+2+2+...+2$,
+            jer svako sedi\v ste mo\v ze da primi, na primer ili Petra ili Jovana.
+            $8 \cdot 2 = 8 + 8 = 16 \quad \text{i} \quad 2\cdot 8 = 2+2+2+2+2+2+2+2 = 16$
+            Kako mo\v ze\v s zamisliti proizvod dva broja?
+
+            Zami\v sljam \v semu:
+            \begin{figure}
+            \centering
+            %\begin{table} % TODO
+            %\end{table}
+            \end{figure}
+
+            Vidim da je to skup \v ciji su elementi raspore\dj eni u redove i kolone.
+            \begin{figure}[h]
+                \centering
+                \Placeholder[(10, 3)]{tackice 8 x 2}
+            \end{figure}
+            $16 = 8 \cdot 2$ [ $2$ reda po $8$ elemenata (sedi\v sta), mogu\' cnosti ]
+            $16 = 8 \cdot 2$ [ $8$ kolona po $2$ elementa (putnika), mogu\' cnosti ]
+
+            Tada se pi\v se broj $16$ i obliku proizvoda broja $2$ i broja $8$ i dobija se
+            jednakost $$8 \cdot 2 = 2 \cdot 8$$
+
+            \item Automobil ima $2$ sedi\v sta ($3$ sedi\v sta, $4$ sedi\v sta)
+            i treba da sedne $8$ putnika. Na koliko na\v cina je to mogu\' ce?
+
+            Ra\v cuna\v s: $8$ puta $2$, tj $2+2+...+2$, Jer svaki putnik mo\v ze da
+            sedne na svako sedi\v ste, i $2$ puta po $8$, tj $8+8$, jer sedi\v ste mo\v ze
+            da primi ili prvog, ili drugog, \dots, ili osmog putnika.
+            $$2 \cdot 8 = 2+2+2+2+2+2+2+2 = 16, \text{ i } 8 \cdot 2 = 8 + 8 = 16$$
+
+            To se vidi i iz slede\' ce \v seme:
+            \begin{figure}
+            \begin{tabular}{c c}
+                %\begin{table}
+                %\end{table}
+                \Placeholder[(2, 8)]{tackice 2 x 8}
+                &
+                %\begin{table}
+                %\end{table}
+                \Placeholder[(2, 8)]{tackice 2 x 8}
+            \end{tabular}
+            \end{figure}
+            Da je to skup \v ciji su elementi raspore\dj eni u redove i kolone (\ref{128:tabela1}).
+
+            $16 = 2 \cdot 8$ [$8$ redova po $2$ elemenata, mogu\' cnosti]
+            $16 = 8 \cdot 8$ [$2$ kolone po $8$ elemenata, mogu\' cnosti]
+
+            Tako se pi\v se broj $16$ u obliku proizvoda broja $2$ i broja $8$ i dobija jednakost
+            $$2 \cdot 8 = 8 \cdot 2$$
+            Napi\v si ove jednakosti:
+            $$8 \cdot 2 = 2 \cdot 8 \qquad 2 \cdot 8 = 8 \cdot 2$$
+            $$16 = 8 \cdot 2 \qquad 2 \cdot 8 = 16$$
+            $$16 = 2 \cdot 8 \qquad 8 \cdot 2 = 16$$
+
+            Svaki proizvod dva broja ozna\v cava da te brojeve treba pomno\v ziti. Ka\v ze\v s broj $8$ treba 
+            pomno\v ziti brojem dva, ili broj dva pomno\v ziti brojem osam, a pita\v s kratko:
+            $2$ mno\v zi $8$ ili $8$ mno\v zi $2$.
+        \end{enumerate}
+    \end{zad}
+    \begin{zad}
+        Kupio sam $6$ svezaka. Svaka staje $6$ dinara. Ra\v cunaj.
+
+        Platio sam u dinarima: $5 \times 6$ (6 mno\v zim 5)
+        ovaj proizvod pi\v sem u obliku zbira:
+        $$5 \times 6 = 5 + 5 + 5 + 5 + 5 + 5$$
+
+        Zatim usmeno ra\v cuna\v s, pri \v cemu misli\v s:
+
+        $2$ puta $5$ je $5$ i $5$, \dots $10$, $3$ puta $5$ je $10$ i $5$ je $15$, $4$ puta $5$ je $15$ i $5$ \dots $20$
+        $5$ puta $5$ je $20$ i $5$ \dots $25$, $6$ puta $5$ je $25$ i $5$ \dots $30$
+        $$5 \times 6 = 30$$
+
+        To neka bude osnovni po\v cetak. Ako ne zna\v s $6$ puta $5$, izra\v cuna\v s $5$ puta $5$ i jo\v s $5$. Ako ni to ne
+        zna\v s $3$ puta $5$ \dots $15$, $4$ puta $5$ \dots $20$, $5$ puta $5$ \dots $25$, $6$ puta $5$ \dots $25$ i $5$ \dots $30$.
+    \end{zad}
+    \begin{zad}
+        Kupljeno je $8$ kutija u svakoj je $12$ olovaka.
+    \end{zad}
+    \begin{zad}
+        Radnik je doneo $8$ puta po $10$ crepova.
+    \end{zad}
+    \begin{zad}
+        Dragan ho\' ce da zasadi sadnice \v sljiva. Napravio je $7$ redova u svakom $12$ rupa. \v Sta ti mo\v ze\v s da
+        izra\v cuna\v s? Izra\v cunaj.
+    \end{zad}
+
+    Ako zamisli\v s redove i iskopane rupe, to izgleda ovako:
+    \begin{figure}
+        \Placeholder[(10, 4)]{prvi red ........ 12 rupa, drugi red .......... 12 rupa, ..., sedmi red .......... 12 rupa}
+    \end{figure}
+    $7$ redova po $12$ rupa je proizvod $12 \cdot 7$
+
+    Dragan treba da iskopa rupa: $12 \cdot 7$
+    Proizvod prikazujem u obliku zbira:
+
+    $$12 \cdot 7 = 12 + 12 + 12 + 12 + 12 + 12 + 12$$
+
+    Usmeno ra\v cunam tako \v sto po\v cinjem iz po\v cetka i govorim:
+    \begin{itemize}
+        \item $2$ puta $12$ je $12$ i $12$ \dots $24$
+        \item $3$ puta $12$ je $24$ i $12$ \dots $36$
+        \item $4$ puta $12$ je $36$ i $12$ \dots $48$
+        \item $5$ puta $12$ je $48$ i $12$ \dots $60$
+        \item $6$ puta $12$ je $60$ i $12$ \dots $72$
+        \item $7$ puta $12$ je $72$ i $12$ \dots $84$
+    \end{itemize}
+
+    Dragan treba da iskopa ukupno rupa i zasadi ukupno sadnica: $12 \cdot 7 = 84$.
+    \begin{zad}
+        Zamisli $8$ linija nacrtanih cleva nadesno i $5$ linija nacrtanih tako da svaka od njih se\v ce svaku od
+        ovih $8$ linija. Zamislim zrno pasulja. Na koliko na\v cina ga mo\v ze\v s staviti tako da ono le\v zi na
+        dvema linijama? Za\v sta?
+    \end{zad}
+    \begin{figure}
+        \centering
+        \Placeholder[(5, 5)]{3x3 linije}
+    \end{figure}
+
+    Dobio sam \v semu pomo\' cu kojke mogu izra\v cunati na koliko se na\v cina zrno pasulja mo\v ze postaviti,
+    zato \v sto su preseci tih linija ta\v cke (mesta) na kojima treba staviti zrno pasulja. One su raspore\dj ene u redove i stupce (kolone), a to je proizvod brojeva $5$ i $8$.
+
+    $8$ redova po $5$ polo\v zaja, to je proizvod $5 \cdot 8$ koji se zapisuje u obliku zbira:
+    $$5 \cdot 8 = 5 + 5 + 5 + 5 + 5 + 5 + 5 + 5$$
+    Ili $5$ stupca po $8$ polo\v zaja to je proizvod $8 \cdot 5$ koji se zapisuje u obliku zbira:
+    $$8 \cdot 5 = 8 + 8 + 8 + 8 + 8$$
+    Ra\v cunam od po\v cetka ,,redom''
+
+    \begin{multicols}{2}
+    \begin{align*}
+        5 \cdot 1 &= 5 \\
+        5 \cdot 2 &= 5 + 5 = 10\\
+        5 \cdot 3 &= (5 + 5) + 5 = 10 + 5\\
+        5 \cdot 4 &= (5 + 5 + 5) + 5 = 15 + 5 = 20\\
+        5 \cdot 5 &= 20 + 5 = 25\\
+        5 \cdot 6 &= 25 + 5 = 30\\
+        5 \cdot 7 &= 30 + 5 = 35\\
+        5 \cdot 8 &= 35 + 5 = 40
+    \end{align*}
+    \break
+    \begin{align*}
+        8 \cdot 1 = 8 \\
+        8 \cdot 2 = 8 + 8 = 16 \\
+        8 \cdot 3 = (8 + 8) + 8 = 24 \\
+        8 \cdot 4 = 24 + 8 = 32 \\
+        8 \cdot 5 = 32 + 8 = 40
+    \end{align*}
+    \end{multicols}
+    Zrno pasulja se mo\v ze straviti na $40$ na\v cina.
+
+    \begin{zad}
+    U daljem radu ,,slu\v zi se i ovim specijalnim postupcima'' % TODO ref [1]
+    \end{zad}
+    \begin{enumerate}
+        \item Kad zna\v s da $4$ je $2$ puta $2$, $6$ je $2$ puta $3$, $8$ je $2$ puta $4$, itd. ra\v cuna\v s:
+        \begin{itemize}
+            \item $2$ puta $10$ je $20$, a $4$ puta $10$ je $2$ puta $20$ \dots $40$
+            \item $2$ puta $12$ je $24$, $4$ puta $12$ je $2$ puta $24$ \dots $48$
+            \item $8$ puta $12$ je $2$ puta $48$ \dots $96$
+            \item $2$ puta $15$ je $30$, $4$ puta $15$ je $2$ puta $30$ \dots $60$
+            \item $2$ puta $3$ je $6$, $4$ puta $3$ je $2$ puta $6$ \dots $12$
+            \item $2$ puta $5$ je $10$, $4$ puta $5$ je $2$ puta $10$ \dots $20$
+            \item $2$ puta $9$ je $18$, $4$ puta $9$ je $2$ puta $18$ \dots $36$
+            \item $8$ puta $9$ je $2$ puta $36$ \dots $72$
+        \end{itemize}
+        Zna\v ci, ako ne zna\v s koliko je $8$ puta $8$, ra\v cuna\v s $4$ puta $8$, odnosno $2$ puta $8$,
+        pa onda $4$ puta $8$ i $8$ puta $8$ ($2$ puta $8$ \dots $16$, $4$ puta $8$ je $2$ puta $16$ \dots $32$,
+        $8$ puta $8$ je $2$ puta $32$ \dots $64$).
+
+        Mno\v zenje brojeva $7$, $8$ i $9$ treba da izra\v zunava\v s ovako:
+
+        $5$ puta $8$ je $5$ puta $10$, mo\v ze $5$ puta $2$, dakle $50$ manje $10$;
+        (simbolima kra\' ce: $8 \cdot 5 = (10 \cdot 2) \cdot 5 = 10 \cdot 5 - 2 \cdot 5 = 50 - 10 = 40$).
+
+        $4$ puta $7$ je $4 \cdot 10$ manje $4$ puta $3$, dakle $40$ manje $12$.
+        (simbolima kra\' ce: $7 \cdot 4 = (10 - 3) \cdot 4 = 10 \cdot 4 - 3 \cdot 4 = 40 - 12 = 28$)
+
+        $9$ puta $8$ je $10$ puta $8$ manje $8$, dakle $80$ manje $8$;
+        (kra\' ce $8 \cdot 9 = 8 \cdot (10 - 1) = 8 \cdot 10 - 8 \cdot 1 = 80 - 8 = 72$).
+
+        $8$ puta $9$ je $8$ puta $10$ manje $8$, dakle, $80$ manje $8$;
+        (kra\' ce: $9 \cdot 8 = (10 - 1) \cdot 8 = 10 \cdot 8 - 10 = 80 - 8 = 72$ ).
+
+        Ovaj postupak je posebno podesan za mno\v zenje broja $9$ i mno\v zenje brojem $9$.
+        \item $3$ puta $7$ je $21$, $6$ puta $7$ je $2$ puta $21$;
+            (kra\' ce: $7 \cdot 3 = 21,\, 7 \cdot 6 = (7 \cdot 3) \cdot 2 = 21 \cdot 2 = 42$)
+            
+            $3$ puta $8$ je $24$, $6$ puta $8$ je $2$ puta $24$;
+            ($8 \cdot 3 = 24,\, 8 \cdot 6 = (8 \cdot 3) \cdot 2 = 24 \cdot 2 = 48$)
+
+            $3$ puta $9$ je $27$, $6$ puta $9$ je $2$ puta $27$;
+            ($9 \cdot 3 = 27,\, 9 \cdot 6 = (9 \cdot 3) \cdot 2 = 27 \cdot 2 = 54$)
+        \item $7$ puta $5$ je $4$ puta $5$ vi\v se $3$ puta $5$;
+            (kra\' ce: $5 \cdot 7 = 5 \cdot (4 + 3) = 5 \cdot 4 + 5 \cdot 3 = 20 + 15 = 35$)
+
+            $7$ puta $5$ je $5$ puta $5$ vi\v se $2$ puta $5$;
+            (kra\' ce: $5 \cdot 7 = 5 \cdot (5 + 2) = 5 \cdot 5 + 5 \cdot 2 = 25 + 10 = 35$)
+
+            $7$ puta $5$ je $10$ puta $5$ manje $3$ puta $5$;
+            (kra\' ce: $5 \cdot 7 = 5 \cdot (10 - 3) = 5 \cdot 10 - 5 \cdot 3 = 50 - 15 = 35$)
+
+            $7$ puta $8$ je $10$ puta $8$ manje $3$ puta $8$, dakle $80$ manje $24$;
+            (kra\' ce: $8 \cdot 7 = 8(10 - 3) = 8 \cdot 10 - 8 \cdot 3 = 40 - 24 = 56$)
+
+            $7$ puta $8$ je $5$ puta $8$ vi\v se $2$ puta $8$, dakle $40$ vi\v se $16$;
+            (kra\' ce: $8 \cdot 7 = 8 (5 + 2) = 8 \cdot 5 + 8 \cdot 2 = 40 + 16 = 56$)
+    \end{enumerate}
+    
+\end{document}   
